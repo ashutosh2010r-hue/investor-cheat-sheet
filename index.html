@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>India Investor Cheat Sheet — Stocks & Mutual Funds</title>
+  <meta name="description" content="Every important stock and mutual fund metric explained simply for Indian investors. P/E ratio, EPS, CAGR, NAV and more — in plain language." />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --surface2: #f0efe9;
+      --text: #1a1a18;
+      --text2: #5a5955;
+      --text3: #9a9892;
+      --border: rgba(0,0,0,0.1);
+      --border2: rgba(0,0,0,0.18);
+      --accent: #1a6b3c;
+      --accent-bg: #e6f4ec;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141412;
+        --surface: #1e1d1a;
+        --surface2: #2a2925;
+        --text: #f0efe9;
+        --text2: #a8a7a0;
+        --text3: #6a6965;
+        --border: rgba(255,255,255,0.1);
+        --border2: rgba(255,255,255,0.18);
+        --accent: #4ade80;
+        --accent-bg: #0f2d1c;
+      }
+      .badge-green { background: #0f2d1c !important; color: #4ade80 !important; }
+      .badge-amber { background: #2d1f0a !important; color: #fbbf24 !important; }
+      .badge-blue { background: #0a1e35 !important; color: #60a5fa !important; }
+      .pill-green { background: #0f2d1c !important; color: #4ade80 !important; }
+      .pill-amber { background: #2d1f0a !important; color: #fbbf24 !important; }
+      .pill-red { background: #2d0f0f !important; color: #f87171 !important; }
+      .pill-blue { background: #0a1e35 !important; color: #60a5fa !important; }
+      .tip-box { background: #2a2925 !important; }
+      .hero { background: #1e1d1a !important; }
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .hero {
+      background: var(--surface);
+      border-bottom: 0.5px solid var(--border);
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+    }
+    .hero-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 600; color: var(--text); margin-bottom: 10px; line-height: 1.2; }
+    .hero p { font-size: 15px; color: var(--text2); max-width: 540px; margin: 0 auto 1.5rem; line-height: 1.6; }
+    .hero-badge { display: inline-block; background: var(--accent-bg); color: var(--accent); font-size: 12px; padding: 5px 14px; border-radius: 999px; font-weight: 500; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+    .tabs { display: flex; gap: 8px; margin-bottom: 2rem; background: var(--surface2); border-radius: 999px; padding: 5px; width: fit-content; }
+    .tab { padding: 9px 24px; border-radius: 999px; border: none; background: transparent; font-size: 14px; font-family: 'DM Sans', sans-serif; cursor: pointer; color: var(--text2); transition: all 0.2s; font-weight: 500; }
+    .tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.12); }
+    .tab:hover:not(.active) { color: var(--text); }
+
+    .section { display: none; animation: fadeIn 0.2s ease; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .section-header { margin-bottom: 1.5rem; }
+    .section-header h2 { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .section-header p { font-size: 14px; color: var(--text2); }
+
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+
+    .card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      padding: 1.1rem 1.25rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
+    .metric-name { font-size: 15px; font-weight: 600; color: var(--text); }
+    .metric-short { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+    .badge { font-size: 11px; padding: 3px 10px; border-radius: 999px; white-space: nowrap; flex-shrink: 0; font-weight: 500; }
+    .badge-green { background: #e6f4ec; color: #166534; }
+    .badge-amber { background: #fef3c7; color: #92400e; }
+    .badge-blue { background: #dbeafe; color: #1e40af; }
+
+    .baby-def {
+      font-size: 13px; color: var(--text2); line-height: 1.65;
+      margin-bottom: 12px;
+      border-left: 2px solid var(--border2);
+      padding-left: 10px;
+    }
+
+    .range-label { font-size: 11px; color: var(--text3); font-weight: 500; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .range-pills { display: flex; flex-direction: column; gap: 4px; }
+    .pill { font-size: 11.5px; padding: 4px 10px; border-radius: 8px; font-weight: 500; width: fit-content; }
+    .pill-green { background: #e6f4ec; color: #166534; }
+    .pill-amber { background: #fef3c7; color: #92400e; }
+    .pill-red { background: #fee2e2; color: #991b1b; }
+    .pill-blue { background: #dbeafe; color: #1e40af; }
+
+    .tip-box {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 2rem;
+      font-size: 13.5px;
+      color: var(--text2);
+      line-height: 1.7;
+      border: 0.5px solid var(--border);
+    }
+    .tip-box strong { color: var(--text); font-weight: 600; }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 12px;
+      color: var(--text3);
+      border-top: 0.5px solid var(--border);
+    }
+    .footer a { color: var(--text2); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 500px) {
+      .hero { padding: 2rem 1rem 1.5rem; }
+      .container { padding: 1.5rem 1rem; }
+      .grid { grid-template-columns: 1fr; }
+      .tabs { width: 100%; }
+      .tab { flex: 1; text-align: center; padding: 9px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">For Indian investors</div>
+  <h1>The Investor's Cheat Sheet</h1>
+  <p>Every important stock and mutual fund metric — explained like you're 5 years old. No jargon, just plain ₹ examples.</p>
+  <span class="hero-badge">100% Free · No sign-up needed</span>
+</div>
+
+<div class="container">
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('stocks', this)">📈 Stocks</button>
+    <button class="tab" onclick="switchTab('mf', this)">💼 Mutual Funds</button>
+  </div>
+
+  <!-- ───────── STOCKS ───────── -->
+  <div id="stocks" class="section active">
+    <div class="section-header">
+      <h2>Stock Metrics</h2>
+      <p>Use these numbers to judge if a company's stock is worth buying — or overpriced hype.</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#166534;"></div> Good to buy</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#92400e;"></div> Be careful</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#991b1b;"></div> Danger zone</div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">P/E Ratio</div><div class="metric-short">Price to Earnings</div></div>
+          <span class="badge badge-green">Most important</span>
+        </div>
+        <div class="baby-def">Imagine a samosa stall earns ₹10/day. If you pay ₹150 to own it, your P/E is 15. It tells you how many years of earnings you're paying for today.</div>
+        <div class="range-label">Ideal Range</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Under 25 — Good value</span>
+          <span class="pill pill-amber">25–40 — Pricey but okay</span>
+          <span class="pill pill-red">Above 50 — Overpriced</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">EPS</div><div class="metric-short">Earnings Per Share</div></div>
+          <span class="badge badge-green">Profit health</span>
+        </div>
+        <div class="baby-def">If a company made ₹1 crore profit and has 10 lakh shares, each share "earned" ₹10. That's the EPS. Higher & growing EPS = company getting richer every year.</div>
+        <div class="range-label">What to look for</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Growing every year — Great sign</span>
+          <span class="pill pill-amber">Flat — Okay, not exciting</span>
+          <span class="pill pill-red">Falling — Big red flag</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">ROE</div><div class="metric-short">Return on Equity</div></div>
+          <span class="badge badge-blue">Efficiency</span>
+        </div>
+        <div class="baby-def">You give a friend ₹100 to start a shop. If they return ₹20 profit, ROE is 20%. It tells you how good the company is at turning YOUR money into MORE money.</div>
+        <div class="range-label">Ideal Range</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Above 15% — Excellent</span>
+          <span class="pill pill-amber">10–15% — Average</span>
+          <span class="pill pill-red">Below 10% — Weak</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">Debt to Equity</div><div class="metric-short">D/E Ratio</div></div>
+          <span class="badge badge-amber">Risk checker</span>
+        </div>
+        <div class="baby-def">Your friend's shop is worth ₹1 lakh but they borrowed ₹2 lakh to run it — very risky! D/E shows how much the company borrowed vs how much it actually owns.</div>
+        <div class="range-label">Ideal Range</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Under 0.5 — Very safe</span>
+          <span class="pill pill-amber">0.5–1.5 — Manageable</span>
+          <span class="pill pill-red">Above 2 — Danger</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">P/B Ratio</div><div class="metric-short">Price to Book</div></div>
+          <span class="badge badge-blue">Value check</span>
+        </div>
+        <div class="baby-def">A company's total assets are worth ₹100 but you buy it for ₹80 — that's a bargain! P/B compares the stock price to what the company actually physically owns.</div>
+        <div class="range-label">Ideal Range</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Under 1 — Hidden gem</span>
+          <span class="pill pill-amber">1–3 — Normal</span>
+          <span class="pill pill-red">Above 5 — Expensive</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">Dividend Yield</div><div class="metric-short">Passive income %</div></div>
+          <span class="badge badge-green">Income</span>
+        </div>
+        <div class="baby-def">Companies share profits with you yearly — like rent from a flat you own. If you paid ₹1000 for stock and get ₹30/year, dividend yield is 3%. Free money while you hold.</div>
+        <div class="range-label">What to look for</div>
+        <div class="range-pills">
+          <span class="pill pill-green">1–4% — Healthy & sustainable</span>
+          <span class="pill pill-amber">Above 6% — Could be a trap</span>
+          <span class="pill pill-red">0% — No passive income</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">Market Cap</div><div class="metric-short">Company size</div></div>
+          <span class="badge badge-blue">Size matters</span>
+        </div>
+        <div class="baby-def">Total value of ALL shares combined — like the price tag on the whole company. Bigger = safer but slower growth. Smaller = fast growth potential but more risk.</div>
+        <div class="range-label">In India (NSE/BSE)</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Large Cap — Above ₹20,000 Cr</span>
+          <span class="pill pill-amber">Mid Cap — ₹5,000–20,000 Cr</span>
+          <span class="pill pill-red">Small Cap — Below ₹5,000 Cr</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">52W High / Low</div><div class="metric-short">52-week price range</div></div>
+          <span class="badge badge-amber">Price context</span>
+        </div>
+        <div class="baby-def">Highest & lowest price in the last 1 year. Like knowing a product was ₹500 last month — so ₹350 today is a deal. Helps you know if you're buying cheap or expensive.</div>
+        <div class="range-label">Smart rule of thumb</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Near 52W low — Possible bargain</span>
+          <span class="pill pill-amber">Near 52W high — Buying at peak</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>Golden rule for Indian stocks:</strong> Look for companies with P/E under 25, ROE above 15%, low D/E (under 1), and growing EPS year-on-year. Never invest based on a single number — use at least 3–4 together. Tools: <strong>Screener.in</strong>, <strong>Tickertape</strong>, <strong>Trendlyne</strong> — all free.
+    </div>
+  </div>
+
+  <!-- ───────── MUTUAL FUNDS ───────── -->
+  <div id="mf" class="section">
+    <div class="section-header">
+      <h2>Mutual Fund Metrics</h2>
+      <p>Mutual funds pool your money with thousands of others — a fund manager invests it. These help you pick the right one.</p>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#166534;"></div> Good sign</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#92400e;"></div> Watch carefully</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#991b1b;"></div> Avoid or reconsider</div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">NAV</div><div class="metric-short">Net Asset Value</div></div>
+          <span class="badge badge-blue">Unit price</span>
+        </div>
+        <div class="baby-def">NAV is the price of one "unit" of the fund. If NAV is ₹50 today and ₹70 after 2 years, you made profit. Lower NAV doesn't mean cheaper — it just means the fund is younger.</div>
+        <div class="range-label">What matters</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Rising NAV over years — Good</span>
+          <span class="pill pill-red">Falling NAV — Losses</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">CAGR</div><div class="metric-short">Compounded Annual Growth Rate</div></div>
+          <span class="badge badge-green">Most important</span>
+        </div>
+        <div class="baby-def">You invest ₹10,000 and it grows to ₹20,000 in 5 years. CAGR tells you the consistent yearly growth rate that got you there — like the fund's annual report card.</div>
+        <div class="range-label">Ideal (5–10 year CAGR)</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Above 12% — Excellent</span>
+          <span class="pill pill-amber">8–12% — Good</span>
+          <span class="pill pill-red">Below 8% — Barely beats FD</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">Expense Ratio</div><div class="metric-short">Annual fund charges</div></div>
+          <span class="badge badge-amber">Hidden cost</span>
+        </div>
+        <div class="baby-def">The fund house charges a yearly fee to manage your money. At 1.5%, they take ₹150/year per ₹10,000 invested — even if the fund performs badly. Always go as low as possible!</div>
+        <div class="range-label">What's acceptable</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Under 0.5% — Very low (index funds)</span>
+          <span class="pill pill-green">0.5–1% — Acceptable</span>
+          <span class="pill pill-amber">1–1.5% — Okay for active funds</span>
+          <span class="pill pill-red">Above 1.5% — Too high</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">Sharpe Ratio</div><div class="metric-short">Risk-adjusted return</div></div>
+          <span class="badge badge-blue">Return quality</span>
+        </div>
+        <div class="baby-def">Two students scored 80 — one studied calmly, one pulled all-nighters in panic. Sharpe checks if the fund earns good returns WITHOUT taking crazy risks. Higher is always better.</div>
+        <div class="range-label">Ideal Value</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Above 1 — Good risk-adjusted return</span>
+          <span class="pill pill-amber">0.5–1 — Average</span>
+          <span class="pill pill-red">Below 0.5 — Too risky for the return</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">Alpha</div><div class="metric-short">Extra return vs benchmark</div></div>
+          <span class="badge badge-green">Fund manager skill</span>
+        </div>
+        <div class="baby-def">Nifty 50 grew 10% and your fund grew 13% — Alpha is +3%. It shows how much EXTRA the fund manager earned by being smart, beyond just following the market blindly.</div>
+        <div class="range-label">What to look for</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Positive Alpha — Fund beats market</span>
+          <span class="pill pill-amber">Zero — Just follows index</span>
+          <span class="pill pill-red">Negative — Worse than market</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">Beta</div><div class="metric-short">Market sensitivity</div></div>
+          <span class="badge badge-amber">Volatility</span>
+        </div>
+        <div class="baby-def">Market falls 10% and your fund falls 15% — Beta is 1.5. Very jumpy! Beta = 1 means it moves like the market. Under 1 means it's calmer. Better for nervous investors.</div>
+        <div class="range-label">Ideal range</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Under 1 — Less volatile, safer</span>
+          <span class="pill pill-amber">Around 1 — Tracks market</span>
+          <span class="pill pill-red">Above 1.5 — Very bumpy ride</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">AUM</div><div class="metric-short">Assets Under Management</div></div>
+          <span class="badge badge-blue">Fund size</span>
+        </div>
+        <div class="baby-def">Total money ALL investors have put into this one fund. Bigger AUM = more people trust it. But too large a fund can become slow to react to market opportunities.</div>
+        <div class="range-label">In Indian context</div>
+        <div class="range-pills">
+          <span class="pill pill-green">₹1,000 Cr+ — Well established</span>
+          <span class="pill pill-amber">₹100–999 Cr — Growing</span>
+          <span class="pill pill-red">Under ₹100 Cr — Too small, risky</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div><div class="metric-name">Standard Deviation</div><div class="metric-short">Return consistency</div></div>
+          <span class="badge badge-amber">Consistency</span>
+        </div>
+        <div class="baby-def">Some funds go 30% one year and -10% the next — like a rollercoaster. Standard deviation measures how "jumpy" the returns are. Lower = smoother, more predictable growth.</div>
+        <div class="range-label">Equity funds (India)</div>
+        <div class="range-pills">
+          <span class="pill pill-green">Under 12% — Stable</span>
+          <span class="pill pill-amber">12–18% — Normal volatility</span>
+          <span class="pill pill-red">Above 20% — Very volatile</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>Golden rule for mutual funds:</strong> For beginners, start with a <strong>Nifty 50 Index Fund via SIP</strong> — low expense ratio (under 0.2%), consistent CAGR, and zero stress. Check CAGR over 5–10 years, not just last year. Use <strong>Groww</strong>, <strong>Zerodha Coin</strong>, or <strong>MF Central</strong> to invest free.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Made for Indian investors · All information is educational only · Always do your own research before investing</p>
+  <p style="margin-top: 6px;">Data sources: NSE, BSE, SEBI guidelines · Built with ❤️ for free public access</p>
+</div>
+
+<script>
+  function switchTab(tabId, el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    el.classList.add('active');
+  }
+</script>
+</body>
+</html>
